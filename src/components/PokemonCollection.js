@@ -2,10 +2,20 @@ import React from "react";
 import PokemonCard from "./PokemonCard";
 import { Card } from "semantic-ui-react";
 
-function PokemonCollection() {
+function PokemonCollection({ pokemon, searchPokemon }) {
+  const filteredPokemon = pokemon.filter( (pocketMonster)=>{
+    return pocketMonster.name.toLowerCase().includes(searchPokemon);
+  })
+  
+  const pokeCards = filteredPokemon.map( (pocketMonster) => {
+    return (
+      <PokemonCard key={pocketMonster.id} pokemon={pocketMonster} />
+      );
+    })
+    
   return (
     <Card.Group itemsPerRow={6}>
-      <h1>Hello From Pokemon Collection</h1>
+      {pokeCards}
     </Card.Group>
   );
 }
